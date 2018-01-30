@@ -21,6 +21,7 @@ export default {
   width: 3.5rem;
   height: 3.21rem;
   margin-bottom: 0.25rem;
+  padding: 0.15rem 0;
   img {
     display: block;
     width: 3.5rem;

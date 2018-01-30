@@ -10,7 +10,16 @@ module.exports = {
     // Paths
     assetsSubDirectory: './',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {
+          target:'https://pre.teacherhou.cn',
+          changeOrigin: true
+      },
+      '/mk': {
+        target:'https://pre.teacherhou.cn',
+        changeOrigin: true
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -50,7 +59,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../www'),
     assetsSubDirectory: './',
-    assetsPublicPath: '',
+    assetsPublicPath: '/',
 
     /**
      * Source Maps

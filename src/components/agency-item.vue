@@ -7,7 +7,7 @@
     <div class="right">
       <h2>猴老师教育<i class="badge badge-recommand"></i></h2>
       <div class="score-distince">
-        <Star :star="4.5" />
+        <Star :star="5.5" />
         <a class="score" href="javascript:void(0)">8.6分</a>
         <a class="distince" href="javascript:void(0)">66km</a>
       </div>

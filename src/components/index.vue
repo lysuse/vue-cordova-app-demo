@@ -13,7 +13,7 @@
             <img :src="banner.bgImgUrl" :alt="banner.title">
           </router-link>
         </swiper-slide>
-        <div class="swiper-pagination" slot="pagination"></div>
+        <div class="swiper-pagination swiper-pagination-white" slot="pagination"></div>
       </swiper>
   </div>
 
@@ -93,7 +93,7 @@
 
 
   <!-- 公开课 -->
-  <pannel class="pannel-index" title="公开课" :refresh="refresh" style="margin-top:0.35rem;margin-bottom: 1rem;">
+  <pannel class="pannel-index" title="公开课" :refresh="refresh" style="margin-top:0.35rem;">
     <div slot="pannel-body">
       <div class="open-class-list">
         <OpencClassItem class="index-open-class-item" v-for="course in pkCourses" :openClass="course"></OpencClassItem>
@@ -236,7 +236,6 @@ export default {
 <style scoped lang="scss">
   .index {
     background: #f5f5f5;
-    paddng-bottom: 1rem;
     .banner {
       height: calc(160vw/3);
       background: #fff;
@@ -254,9 +253,6 @@ export default {
             }
           }
         }
-      }
-      .swiper-pagination-bullet-active{
-        background-color: #fff
       }
     }
 
@@ -352,7 +348,7 @@ export default {
               &:after {
                 position: absolute;
                 left: 0.19rem;
-                top: 0.17rem;
+                top: 0.15rem;
                 display: inline-block;
                 content: ' ';
                 width: 0.06rem;
@@ -374,6 +370,7 @@ export default {
         position: relative;
       }
       .open-class-list {
+        clear: both;
         display: flex;
         flex-direction: row;
         flex:1;

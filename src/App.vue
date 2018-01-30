@@ -5,11 +5,13 @@
       <a href="javascript:void(0)" @click="headerRightClick" class="nav-right" :class="rightBtn.classNames" :style="rightBtn.style" v-html="rightBtn.content"></a>
       <div class="nav-title" @touchend="scollTop($event)" :class="title.classNames" :style="title.style" v-html="title.content"></div>
     </div>
-    <div class="app-bd" :class="(noHeader||header.transparent)?'':'pad-header'" :style="{marginBottom:(showTab?'1.5rem':'')}">
+    <!-- :style="{marginBottom:(showTab?'1.5rem':'')}" -->
+    <div class="app-bd" :class="(noHeader||header.transparent)?'':'pad-header'">
       <transition :name="transitionName">
         <router-view/>
       </transition>
     </div>
+    <div :style="{height:(showTab?'1rem':'')}"></div>
     <div class="tab-nav-bar">
       <router-link :to="'/'" class="tab-item" exact>
         <i class="iconfont" :class="'icon-home-'+($route.name=='index'?'fill':'line')"></i>
@@ -140,14 +142,26 @@ export default {
     }
   },
   mounted () {
+    //document.documentElement.clientHeight
 
   }
 }
 </script>
 
 <style lang="scss">
-
-html ,body,#app {
+@font-face {
+  font-family: 'PingFang';
+  src: url('/assets/fonts/PingFang_Normal.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PingFang';
+  src: url('/assets/fonts/PingFang_Bold.otf');
+  font-weight: bold;
+  font-style: normal;
+}
+html ,body {
   height: 100%;
 }
 body {
@@ -158,14 +172,16 @@ a {
   -webkit-tap-highlight-color:transparent;
 }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'PingFang','Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   .app-bd {
     width: 100%;
-    min-height: 90%;
-    min-height: calc(100% - 1.84rem);
+    height: calc(100% - 1.84rem);
     z-index: 10;
+    >div {
+      padding-bottom: 1px;
+    }
   }
   .pad-header {
     padding-top: 0.84rem;

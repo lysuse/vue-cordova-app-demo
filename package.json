@@ -5,7 +5,7 @@
   "author": "youngstream <ly1216045316@126.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0",
     "browser": "node build/build.js && cordova prepare browser",
     "ios": "npm run build && cordova prepare ios && cordova run ios",
     "android": "npm run build && cordova prepare android && cordova run android",
@@ -15,6 +15,8 @@
     "build:prod": "node build/build.js && cordova build android --release"
   },
   "dependencies": {
+    "axios": "^0.17.1",
+    "qs": "^6.5.1",
     "vue": "^2.5.2",
     "vue-awesome-swiper": "^3.1.2",
     "vue-router": "^3.0.1",

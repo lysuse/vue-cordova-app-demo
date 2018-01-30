@@ -20,7 +20,6 @@
   <div class="find-result-list find-agencys" v-show="type==1">
     <AgencyItem v-for="agency in agencys" :agency="agency"></AgencyItem>
   </div>
-
 </div>
 </template>
 

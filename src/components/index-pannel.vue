@@ -27,8 +27,11 @@ export default {
 .pannel {
   clear: both;
   .pannel-header {
-    padding: 0.24rem 0.21rem;
+    padding: 0 0.21rem;
     vertical-align: middle;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    clear: both;
     .left {
       float: left;
       font-size: 0.32rem;
@@ -37,15 +40,28 @@ export default {
     }
     .right {
       float: right;
+      display: inline-block;
       color: #9e9e9e;
       font-size: 0.24rem;
-      line-height: 0.24rem;
+      height: 0.8rem;
+      line-height: 0.8rem;
       vertical-align: middle;
-      height: 0.24rem;
+      i {
+        display: inline-block;
+        height: 0.8rem;
+        line-height: 0.8rem;
+        vertical-align: middle;
+      }
+      span {
+        display: inline-block;
+        height: 0.8rem;
+        line-height: 0.8rem;
+        vertical-align: middle;
+      }
     }
   }
   .pannel-body {
-    padding: 0.15rem 0.2rem;
+    padding: 0 0.15rem 0.15rem 0.15rem;
   }
 }
 </style>

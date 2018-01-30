@@ -10,16 +10,55 @@
   <div class="monkey-toutiao monkey-tab-content" v-show="tab==0">
     <div class="toutiao-top">
       <swiper :options="swiperOption">
-        <swiper-slide v-for="banner in toutiaoBanners">
+        <swiper-slide v-for="banner in monkeyTreasure.toutiao.banners">
           <a href="javascript:void(0)">
-            <img :src="banner.img" :alt="banner.title">
+            <img :src="banner.imageUrl" :alt="banner.title">
             <h2>{{banner.title}}</h2>
           </a>
         </swiper-slide>
-        <div class="swiper-pagination" slot="pagination"></div>
+        <div class="swiper-pagination swiper-pagination-white" slot="pagination"></div>
       </swiper>
     </div>
+    <MonkeyPannel class="monkey-pannel" title="教育头条" icon="icon-hotfill icon-bg-red">
+      <div slot="pannel-body">
+        <MonkeyNews v-for="news in monkeyTreasure.toutiao.headLine.datas" :news="news"></MonkeyNews>
+      </div>
+    </MonkeyPannel>
 
+    <MonkeyPannel class="monkey-pannel" title="热门文章" icon="icon-hotfill icon-bg-red">
+      <div slot="pannel-body">
+        <MonkeyNews v-for="news in monkeyTreasure.toutiao.hotArticle.datas" :news="news"></MonkeyNews>
+      </div>
+    </MonkeyPannel>
+  </div>
+
+  <div class="monkey-toutiao monkey-tab-content" v-show="tab==1">
+    <div class="toutiao-top">
+      <swiper :options="swiperOption">
+        <swiper-slide v-for="banner in monkeyTreasure.wiki.banners">
+          <a href="javascript:void(0)">
+            <img :src="banner.imageUrl" :alt="banner.title">
+            <h2>{{banner.title}}</h2>
+          </a>
+        </swiper-slide>
+        <div class="swiper-pagination swiper-pagination-white" slot="pagination"></div>
+      </swiper>
+    </div>
+    <MonkeyPannel class="monkey-pannel" title="名校政策" icon="mt-icon mt-school-policy">
+      <div slot="pannel-body">
+        <MonkeyNews v-for="news in monkeyTreasure.wiki.policy.datas" :news="news"></MonkeyNews>
+      </div>
+    </MonkeyPannel>
+
+    <MonkeyPannel class="monkey-pannel" title="名校介绍" icon="mt-icon mt-school">
+      <div slot="pannel-body">
+        <MonkeyNews v-for="news in monkeyTreasure.wiki.school.datas" :news="news"></MonkeyNews>
+      </div>
+    </MonkeyPannel>
+  </div>
+
+  <div class="monkey-paper-pannel monkey-tab-content" v-show="tab==2">
+    <SchoolPaperItem v-for="paper in monkeyTreasure.schoolPaper.datas" :paper="paper"></SchoolPaperItem>
   </div>
 
 </div>
@@ -27,37 +66,46 @@
 
 <script>
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import MonkeyPannel from './monkey-pannel'
+import MonkeyNews from './monkey-news-item'
+import SchoolPaperItem from './school-paper-item'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'monkey-treasure',
-  components: {swiper, swiperSlide},
+  components: {swiper, swiperSlide,MonkeyPannel,MonkeyNews,SchoolPaperItem},
+  computed: {
+    ...mapState(['monkeyTreasure'])
+  },
   data () {
     return {
       tab: 0,
-      toutiaoBanners: [],
       swiperOption: {
         pagination: {el: '.swiper-pagination'}
-      }
+      },
     }
   },
   methods: {
+    ...mapActions('monkeyTreasure',[
+      'loadWikiIndex',
+      'loadSchoolPaper',
+      'loadTouTiaoIndex'
+    ]),
     switchTab(tab) {
       this.tab = tab
     }
   },
   created () {
-    setTimeout( () => {
-      this.toutiaoBanners.push({img:'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=904562757,4035533045&fm=173&s=7CA3B9540463B75116E25F810300908F&w=319&h=214&img.JPEG',title: '这里是名校百科的标题,大概有这么多'})
-      this.toutiaoBanners.push({img:'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3025693939,3603512488&fm=173&s=2C7269805F32069CCEB56C9E0300C092&w=550&h=367&img.JPEG',title: '360关闭水滴直播平台 陈菲菲：希望360道歉'})
-      this.toutiaoBanners.push({img:'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2735707884,1454358934&fm=173&s=0F624D8084203CB6DAA8A415030000C1&w=640&h=356&img.JPEG',title: '那个坐头等舱的中年男子'})
-      this.toutiaoBanners.push({img:'https://file.teacherhou.cn/pub/20171226/dianzanyilaio.jpg',title: '11111111111111'})
-    }, 1500)
+    this.loadWikiIndex()
+    this.loadSchoolPaper({page:1,pageSize:12})
+    this.loadTouTiaoIndex()
   }
 }
 </script>
 
 <style scoped lang="scss">
   .monkey-treasure {
+    background: #f6f6f6;
     .monkey-header {
       position: fixed;
       width: 100%;
@@ -65,11 +113,12 @@ export default {
       top: 0;
       display: flex;
       flex: 1;
-      height: 0.74rem;
-      line-height: 0.74rem;
+      height: 0.94rem;
+      line-height: 0.94rem;
       flex-direction: row;
       padding-bottom: 0.06rem;
       background: #fff;
+      z-index: 33;
       a {
         position: relative;
         flex: 1;
@@ -113,7 +162,10 @@ export default {
 
     .monkey-tab-content {
       background: #f6f6f6;
-      padding-top: 0.75rem;
+      padding-top: 0.95rem;
+      .monkey-pannel {
+        margin-bottom: 0.2rem;
+      }
     }
     .monkey-toutiao {
       .toutiao-top {
@@ -158,6 +210,11 @@ export default {
           }
         }
       }
+    }
+    .monkey-paper-pannel {
+      background: #fff;
+      padding: 0 0.31rem;
+      padding-top: 0.95rem;
     }
   }
 </style>
