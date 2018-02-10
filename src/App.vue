@@ -32,10 +32,13 @@
     </div>
   </div>
 </template>
-
+<style lang="scss">
+  @import "./style/index";
+</style>
 <script>
 import { mapActions } from 'vuex'
 import 'normalize.css'
+
 
 const loadHeaderConfig = (config) => {
   let result = {

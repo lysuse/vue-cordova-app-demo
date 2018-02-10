@@ -24,6 +24,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../style/index.scss";
 .pannel {
   clear: both;
   .pannel-header {
@@ -34,7 +35,8 @@ export default {
     clear: both;
     .left {
       float: left;
-      font-size: 0.32rem;
+      // font-size: 0.32rem;
+      @include font-dpr(16px);
       font-weight: bold;
       color: #383838;
     }

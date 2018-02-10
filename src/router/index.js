@@ -92,13 +92,7 @@ export default new Router({
         showTab: true,
         title: '个人中心',
         //头部
-        header: {
-          title: '个人中心',
-          //返回按钮
-          backBtn: '<i class="iconfont icon-left"></i>',
-          //右侧按钮
-          rightBtn: '<i class="iconfont icon-more"></i>'
-        },
+        header: false,
       },
       component: UserHome
     },

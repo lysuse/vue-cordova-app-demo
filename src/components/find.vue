@@ -104,6 +104,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../style/index.scss";
 .find {
   background: #f5f5f5;
   .find-top {
@@ -125,6 +126,8 @@ export default {
         bottom: 1.16rem;
         left: 0;
         font-size: 16px;
+        @include font-dpr(16px);
+        // font-size: 16px;
         font-weight: bold;
         text-align: center;
       }

@@ -20,6 +20,8 @@
           	if (!doc.addEventListener) return;
           	win.addEventListener(resizeEvt, recalc, false);
           	doc.addEventListener('DOMContentLoaded', recalc, false);
+            var dpr = window.devicePixelRatio || 1;
+            docEl.setAttribute('data-dpr', dpr);
         })(document, window);
   	</script>
   </head>
